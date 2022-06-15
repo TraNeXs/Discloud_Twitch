@@ -202,7 +202,6 @@ let doSelloutMessage = (channel) => {
     }
 };
 
-
 let lastTextReplyAt = 0;
 
 client.on('message', message => {
