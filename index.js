@@ -210,6 +210,8 @@ client.on('message', message => {
         return;
     }
 
+
+    
     let txtPlain = message.content.toString().trim();
     let txtLower = txtPlain.toLowerCase();
 
