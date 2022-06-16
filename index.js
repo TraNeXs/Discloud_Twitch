@@ -190,6 +190,7 @@ let doSelloutMessage = (channel) => {
         return;
     }
 
+    
     let messageText = "Oh. I guess nightbot is out drinking again. I got this. ";
     messageText += "How many quality Amazon™ products are there? At least ";
     messageText += randomLine;
