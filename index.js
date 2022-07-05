@@ -490,7 +490,7 @@ TwitchMonitor.onChannelLiveUpdate((streamData) => {
     } catch (e) { }
 
     // Update activity
-    StreamActivity.setChannelOnline(streamData);
+  
 
     // Generate message
     const msgFormatted = `**${streamData.user_name}** je právě online, tak doraž na stream <:sipecka:993057012709605436> https://twitch.tv/${streamData.user_name}`;
