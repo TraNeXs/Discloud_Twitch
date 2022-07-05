@@ -14,18 +14,8 @@ const ElizaHelper = require('./eliza');
 const LiveEmbed = require('./live-embed');
 const MiniDb = require('./minidb');
 
-const express = require('express')
-const app = express();
-const port = 3000
-
-app.get('/', (req, res) => res.send('Jedůůů'))
-
-app.listen(port, () =>
-console.log(`Your app is listening a http://localhost:${port}`)
-);
-
 // --- Startup ---------------------------------------------------------------------------------------------------------
-console.log('Timbot is starting.');
+console.log('Twitch BOT jede !');
 
 // --- Cleverbot init --------------------------------------------------------------------------------------------------
 let cleverbot = null;
@@ -39,65 +29,7 @@ if (config.cleverbot_token) {
     }, true);
 }
 
-const setup = require('./setup.js');
-const { start } = require('./bot.js');
 
-const printValues = function(values, text) {
-  console.log(text ? text : 'Current values:');
-  for (var key in values) {
-    console.log(`  ${key} = \x1b[32m'${values[key]}'\x1b[0m`);
-  }
-}
-
-const startBot = function(values) {
-  console.log('Starting bot');
-  var bot = start(values);
-  bot.on('restart',() => {
-    console.log('\nRestarting bot');
-    bot.destroy();
-    bot = start(values);
-  })
-  var shutdown = function() {
-    console.log('Shutting down');
-    let destructor = bot.destroy();
-    if (destructor) {
-      destructor.then(() => {
-        process.exit(0);
-      }).catch(console.error);
-    } else {
-      process.exit(0);
-    }
-  }
-  process.on('SIGINT', shutdown);
-  process.on('SIGTERM', shutdown);
-}
-
-if (process.argv.includes('-c') || process.argv.includes('--config')) {
-  setup.loadValues().then((values) => {
-    printValues(values);
-    process.exit(0);
-  }).catch((error) => {
-    console.log('Unable to load saved values, reconfiguring all saved values again');
-    setup.createValues().then((values) => {
-      setup.saveValues(values).then(() => {
-        printValues(values, 'New values:');
-        process.exit(0);
-      }).catch(console.error);
-    }).catch(console.error);
-  })
-} else {
-  console.log('Attempting to load enviroment values...');
-  setup.loadValues().then((values) => {
-    startBot(values);
-  }).catch((error) => {
-    console.error(error);
-    setup.createValues().then((values) => {
-      setup.saveValues(values).then(() => {
-        startBot(values);
-      }).catch(console.error);
-    }).catch(console.error);
-  })
-}
 // --- Discord ---------------------------------------------------------------------------------------------------------
 console.log('Connecting to Discord...');
 
