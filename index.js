@@ -493,7 +493,7 @@ TwitchMonitor.onChannelLiveUpdate((streamData) => {
     StreamActivity.setChannelOnline(streamData);
 
     // Generate message
-    const msgFormatted = `**${streamData.user_name}** je právě online, tak doraž na stream <a:sipka:844647230047649813> https://twitch.tv/${streamData.user_name}`;
+    const msgFormatted = `**${streamData.user_name}** je právě online, tak doraž na stream <:sipecka:993057012709605436> https://twitch.tv/${streamData.user_name}`;
     const msgEmbed = LiveEmbed.createForStream(streamData);
 
     // Broadcast to all target channels
